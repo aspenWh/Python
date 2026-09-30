@@ -35,6 +35,7 @@ else:
 #This tells python to print the results of the analysis in a clear and organized manner
     print()
     print("Expense summary")
+    print("----------------")
     print(f"Number of expenses: {len(expenses)}")
     print(f"Total expenses: ${total:.2f}")
     print(f"Average expense: ${average:.2f}")
@@ -43,3 +44,4 @@ else:
     print(f"Number of small expenses (<$25): {small_count}")
     print(f"Number of moderate expenses: {moderate_count}")
     print(f"Number of large expenses: {large_count}")
+    #Ends here
