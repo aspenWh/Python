@@ -1,35 +1,48 @@
-# Road trip planner
-# IS 303 - Level 2 assignment
-# This program estimates cost of a round-trip road trip
+# Assignment 3: Number Guessing Game
+# The computer will generate a random number between 1 and 100, and the user will have to guess it.
 
+#This tells program to import the random module so that it can generate a random number
+import random
 
-print("====================")
-print("Road Trip Planner")
-print("====================") 
+#this is where the game starts
+play_again = 'y'
 
-# Get info from people
-User_name = input("What is your name?")
-destination = input("Where are you traveling?")
-one_way_miles = float(input("How many miles is the trip one way?"))
-miles_per_gallon = float(input("What is you vehicle's miles per gallon?"))
-gas_price = float(input("What is the gas price per gallon?"))
-travelers = int(input("How mant travelers are going?"))
+# This is the main loop that will keep the game running as long as the user wants to play again
+while play_again.lower() == 'y':
+    secret_number = random.randint(1, 100)
+    print("Pick a number between 1 and 100")
 
-# Trip info
-total_miles = one_way_miles * 2 
-gallons_needed = total_miles / miles_per_gallon
-gas_cost = gallons_needed * gas_price
-cost_per_traveler = gas_cost / travelers
+    # This will count the number of guesses the user has made
+    guesses = 0
 
-#Summary of Trip
-print("===========================")
-print("Trip Summary")
-print("===========================")
-print(f"Traveler: {User_name.upper()}")
-print(f"Destination: {destination}")
-print(f"Total Miles: {total_miles}")
-print(f"Gallons of Gas: {gallons_needed:.2f}")
-print(f"Gas Cost: ${gas_cost:.2f}")
-print(f"Cost per Traveler: ${cost_per_traveler:.2f}")
-print("===========================")
-print("Have a great trip!")
+#This will tell play if they need to guess higher or lower than the number they guessed
+    while True:
+        guess = int(input("Enter your guess: "))
+        if guess < 1 or guess > 100:
+            print("Invalid guess. Please try again.")
+        else:
+            guesses += 1
+            if guess < secret_number:
+                print("Higher")
+            elif guess > secret_number:
+                print("Lower")
+            else:
+                print(f"Congratulations! You've guessed the number in {guesses} tries.")
+                break
+
+#This will give the user feedback based on how many guesses they took to get the right answer
+    if guesses <= 3:
+        print("You are amazing!")
+    elif guesses <= 5:
+        print("Impressive!")
+    elif guesses <= 7:
+        print("Good job!")  
+    elif guesses <= 9:
+        print("Took a little longer, but you got it!")
+    else:
+        print("You need to lock in!")
+
+    # This will ask the user if they want to play again
+    play_again = input("Do you want to play again? (y/n): ")
+    print("Thank you for playing!")
+    

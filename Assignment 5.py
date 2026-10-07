@@ -1,47 +1,66 @@
-# create a program that analyzes a series of personal expenses
-#ask user repeatedly to enter expenses until they enter 0 to indicate they are done
+#Game of Rock, Paper, Scissors
+import random
 
-# This Loops the program until the user enters 0 to indicate they are done entering expenses.
-expenses = []
-while True: 
-    expense = float(input("Enter an expense (or 0 to finish): "))
+#This is getting them to input their choice
+def get_player_choice():
+    choice = input("Enter your choice (rock, paper, scissors): ").lower()
+
+    while choice not in ["rock", "paper", "scissors"]:
+        print("Invalid choice.")
+        choice = input("Enter your choice (rock, paper, scissors): ").lower()
     
-    if expense == 0:
-        break
-    if expense < 0:
-        print("expense cannot be a negative number")
+    return choice
+
+def determine_winner(player, computer):
+    if player == computer:
+        return "tie"
+    elif (player == "rock" and computer == "scissors") or \
+         (player == "paper" and computer == "rock") or \
+         (player == "scissors" and computer == "paper"):
+        return "win"
     else:
-        expenses.append(expense)
-if len(expenses) == 0:
-    print("No expenses were entered.")
-else:
-    small_count = 0
-    moderate_count = 0
-    large_count = 0
+        return "loss"
 
-    for expense in expenses:
-        if expense < 25:
-            small_count += 1
-        elif expense < 100:
-            moderate_count += 1
-        else:
-            large_count += 1
+print("Welcome to the Game of Rock, Paper, Scissors!")
 
-    total = sum(expenses)
-    average = total / len(expenses)
-    smallest = min(expenses)
-    largest = max(expenses)
+rounds = int(input("How many rounds would you like to play? "))
 
-#This tells python to print the results of the analysis in a clear and organized manner
-    print()
-    print("Expense summary")
-    print("----------------")
-    print(f"Number of expenses: {len(expenses)}")
-    print(f"Total expenses: ${total:.2f}")
-    print(f"Average expense: ${average:.2f}")
-    print(f"Smallest expense: ${smallest:.2f}")
-    print(f"Largest expense: ${largest:.2f}")
-    print(f"Number of small expenses (<$25): {small_count}")
-    print(f"Number of moderate expenses: {moderate_count}")
-    print(f"Number of large expenses: {large_count}")
-    #Ends here
+while rounds % 2 == 0:
+        print("The number of rounds must be odd.")
+        rounds = int(input("How many rounds would you like to play? "))
+
+player_wins = 0
+computer_wins = 0
+games_played = 0
+
+while games_played < rounds:
+
+    player_choice = get_player_choice()
+
+    choices = ["rock", "paper", "scissors"]
+    computer_choice = random.choice(choices)
+
+    print("The computer chose", computer_choice + ".")
+
+    result = determine_winner(player_choice, computer_choice)
+   
+    if result == "win":
+        print("You win this round!")
+        player_wins += 1
+        games_played += 1
+    elif result == "loss":
+        print("You lose this round.")
+        computer_wins += 1
+        games_played += 1
+    else:
+        print("This round is a tie! Play again.")
+
+print("----------------------------------------")
+print("Score - You:", player_wins, "Computer:", computer_wins)
+if player_wins > computer_wins:
+    print("Congratulations! You won the game!")
+elif player_wins < computer_wins:
+    print("Sorry! The computer won the game.")
+
+
+print("Thank you for playing!")

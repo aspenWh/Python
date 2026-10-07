@@ -45,6 +45,6 @@
 
 #get is local and get hub is destributed
 
-amount = 10000
+#amount = 10000
 
-print("if i had " + "${:,.2f}".format(amount))
+#print("if i had " + "${:,.2f}".format(amount))
