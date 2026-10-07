@@ -2,7 +2,7 @@
 import random
 
 #This is getting them to input their choice
-def get_player_choice():
+def get_player_choice():  
     choice = input("Enter your choice (rock, paper, scissors): ").lower()
 
     while choice not in ["rock", "paper", "scissors"]:
@@ -21,6 +21,7 @@ def determine_winner(player, computer):
     else:
         return "loss"
 
+#This will be the introduction to the game
 print("Welcome to the Game of Rock, Paper, Scissors!")
 
 rounds = int(input("How many rounds would you like to play? "))
@@ -42,6 +43,7 @@ while games_played < rounds:
 
     print("The computer chose", computer_choice + ".")
 
+# This is determining the winner of the round
     result = determine_winner(player_choice, computer_choice)
    
     if result == "win":
@@ -55,6 +57,7 @@ while games_played < rounds:
     else:
         print("This round is a tie! Play again.")
 
+# This is displaying the final results of the game
 print("----------------------------------------")
 print("Score - You:", player_wins, "Computer:", computer_wins)
 if player_wins > computer_wins:
@@ -64,3 +67,4 @@ elif player_wins < computer_wins:
 
 
 print("Thank you for playing!")
+#This is the end of the game
