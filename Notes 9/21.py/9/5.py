@@ -1,7 +1,21 @@
+
+def is_odd(numero: int):
+    odd = True
+    if numero % 2 == 0:
+        odd = False
+    if numero % 2 != 0:
+        odd = True
+
+    return odd 
+
 numbers = [1,3,6,7,5]
 
-for i in range(5): #third number is what you can subrtact or add in line
-    print(numbers[i])
-#These lines are doing the same thing
 for num in numbers:
-    print(num)
+    if is_odd(num):
+        print(f"{num} is odd")
+    else:
+        print(f"{num} is even")
+
+print("odd")
+
+    #landa function is_odd = lambda numero: numero % 2 != 0
